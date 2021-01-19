@@ -6,8 +6,8 @@ RUN apk add --no-cache wget curl \
     && rm speedtest-cli.tgz \
     && mv speedtest* /usr/bin/
 
-HEALTHCHECK --interval=5m --timeout=5s --retries=1 \
-    CMD ./healthcheck.sh
+# HEALTHCHECK --interval=5m --timeout=5s --retries=1 \
+#    CMD ./healthcheck.sh
 
 WORKDIR /opt/speedtest
 
