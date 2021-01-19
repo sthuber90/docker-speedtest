@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+
+name: docker-publish
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker Setup QEMU
+        # You may pin to the exact commit or the version.
+        # uses: docker/setup-qemu-action@6520a2d2cb6db42c90c297c8025839c98e531268
+        uses: docker/setup-qemu-action@v1.0.1
+        with:
+          # QEMU static binaries Docker image (e.g. tonistiigi/binfmt:latest)
+          # image: # optional, default is tonistiigi/binfmt:latest
+          # Platforms to install (e.g. arm64,riscv64,arm)
+          platforms: all # optional, default is all
+      - name: Docker Setup Buildx
+        id: buildx
+        # You may pin to the exact commit or the version.
+        # uses: docker/setup-buildx-action@5c0276ad2c777e56aaf2c95ef4ad5d1fa7bb4d1d
+        uses: docker/setup-buildx-action@v1.0.4
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push Docker images
+        # You may pin to the exact commit or the version.
+        # uses: docker/build-push-action@0db984c1826869dcd0740ff26ff75ff543238fd9
+        uses: docker/build-push-action@v2.2.1
+        with:
+          # Builder instance
+          builder: ${{ steps.buildx.outputs.name }} # optional
+          # List of tags
+          tags: |
+            sthuber90/speedtest:latest
+            sthuber90/speedtest:${{github.run_number}}
+            sthuber90/speedtest:${{github.sha}}
+          # Do not use cache when building the image
+          no-cache: true # optional, default is false
+          # List of target platforms for build
+          platforms: linux/arm/v7 # optional
+          # Push is a shorthand for --output=type=registry
+          push: true # optional, default is false

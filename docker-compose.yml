@@ -1,0 +1,43 @@
+# inspired by https://gitlab.com/thinkonezero/docker-internet-speedtest-dashboard
+version: '2'
+services:
+  influxdb:
+    image: influxdb:1.8-alpine
+    container_name: influxdb
+    restart: unless-stopped
+    ports:
+      - '8086:8086'
+    environment:
+      INFLUXDB_DB: speedtest
+    volumes:
+      - '/opt/internet-speedtest/influxdb:/var/lib/influxdb'
+
+  chronograf:
+    image: chronograf:1.8-alpine
+    container_name: chronograf
+    restart: unless-stopped
+    ports:
+      - '8888:8888'
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+    volumes:
+      - '/opt/internet-speedtest/chronograf:/var/lib/chronograf'
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+
+  speedtest:
+    image: sthuber90/speedtest
+    container_name: speedtest
+    restart: unless-stopped
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    environment:
+      INFLUXDB_DB: speedtest
+      TEST_INTERVAL: 900
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
