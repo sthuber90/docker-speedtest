@@ -2,7 +2,7 @@
 version: '2'
 services:
   influxdb:
-    image: influxdb:1.8-alpine
+    image: influxdb:1.8
     container_name: influxdb
     restart: unless-stopped
     ports:
@@ -13,7 +13,7 @@ services:
       - '/opt/internet-speedtest/influxdb:/var/lib/influxdb'
 
   chronograf:
-    image: chronograf:1.8-alpine
+    image: chronograf:1.8
     container_name: chronograf
     restart: unless-stopped
     ports:
