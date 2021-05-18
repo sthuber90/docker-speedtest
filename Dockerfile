@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.12
 
 RUN apk add --no-cache wget curl \
     && wget -O speedtest-cli.tgz https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-arm-linux.tgz \
