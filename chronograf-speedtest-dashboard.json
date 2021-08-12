@@ -20,7 +20,7 @@
 				"name": "Packet Loss",
 				"queries": [
 					{
-						"query": "SELECT mean(\"value\") AS \"mean_value\" FROM \"speedtest\".\"autogen\".\"packet_loss\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY time(15m) FILL(null)",
+						"query": "SELECT mean(\"value\") AS \"mean_value\" FROM \"speedtest\".\"autogen\".\"packet_loss\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY time(15m) FILL(none)",
 						"queryConfig": {
 							"database": "speedtest",
 							"measurement": "packet_loss",
@@ -45,7 +45,7 @@
 								"tags": []
 							},
 							"areTagsAccepted": false,
-							"fill": "null",
+							"fill": "none",
 							"rawText": null,
 							"range": null,
 							"shifts": null
@@ -151,7 +151,7 @@
 				"name": "Latency and Jitter",
 				"queries": [
 					{
-						"query": "SELECT mean(\"value\") AS \"mean_value\" FROM \"speedtest\".\"autogen\".\"jitter\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY time(:interval:) FILL(null)",
+						"query": "SELECT mean(\"value\") AS \"mean_value\" FROM \"speedtest\".\"autogen\".\"jitter\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: GROUP BY time(:interval:) FILL(none)",
 						"queryConfig": {
 							"database": "speedtest",
 							"measurement": "jitter",
@@ -176,7 +176,7 @@
 								"tags": []
 							},
 							"areTagsAccepted": false,
-							"fill": "null",
+							"fill": "none",
 							"rawText": null,
 							"range": null,
 							"shifts": null
@@ -370,7 +370,7 @@
 					"y": {
 						"bounds": [
 							"0",
-							"3"
+							"55"
 						],
 						"label": "upload",
 						"prefix": "",
@@ -508,7 +508,7 @@
 					"y": {
 						"bounds": [
 							"0",
-							"55"
+							"255"
 						],
 						"label": "download",
 						"prefix": "",
