@@ -12,7 +12,7 @@ Thank you very much for the work you put in, paving the way for this project.
 
 ## Prerequisites
 * Docker
-* ARMv7 based machine, i.e. RaspberryPi
+* 
 
 ## Usage
 ![Dashboard](docs/img/dashboard.png)
