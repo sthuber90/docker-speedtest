@@ -80,3 +80,10 @@ or streams taking place within your network during a test.
 
 Take note, that running the _speedtest_ container means, that you accept the Speedtest CLI's [license](docs/speedtest-license.md) 
 and [privacy regulations](docs/speedtest-privacy.md). 
+
+
+## Docker build & push to docker hub
+
+docker build -t drakor007x/speedtest .
+
+docker push drakor007x/speedtest

@@ -10,7 +10,7 @@ services:
     environment:
       INFLUXDB_DB: speedtest
     volumes:
-      - '/opt/internet-speedtest/influxdb:/var/lib/influxdb'
+      - './data/influxdb:/var/lib/influxdb'
 
   chronograf:
     image: chronograf:1.8
@@ -21,14 +21,14 @@ services:
     environment:
       INFLUXDB_URL: http://influxdb:8086
     volumes:
-      - '/opt/internet-speedtest/chronograf:/var/lib/chronograf'
+      - './data/chronograf:/var/lib/chronograf'
     links:
       - influxdb
     depends_on:
       - influxdb
 
   speedtest:
-    image: sthuber90/speedtest
+    image: drakor007x/speedtest
     container_name: speedtest
     restart: unless-stopped
     dns:
