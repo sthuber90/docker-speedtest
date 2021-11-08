@@ -1,11 +1,11 @@
 # Internet Speedtest with Docker
 
-Modified from
+## Modified from https://github.com/sthuber90/docker-speedtest ARM -> x86_64
 
 ![docker-publish](https://github.com/sthuber90/docker-speedtest/workflows/docker-publish/badge.svg)
 
 > Run [Ookla's speedtest CLI](https://www.speedtest.net/de/apps/cli) to regularly test your local internet connection 
-> from a [Docker](https://docs.docker.com/) ARMv7 compatible container.
+> from a [Docker](https://docs.docker.com/) x86_64 compatible container.
 > The results of the speed test are intended to be forwarded to an [InfluxDB](https://docs.influxdata.com/) and visualized
 > in a [Chronograf](https://docs.influxdata.com/chronograf) dashboard.
 
@@ -14,12 +14,12 @@ Thank you very much for the work you put in, paving the way for this project.
 
 ## Prerequisites
 * Docker
-* 
+* x86_64 arch
 
 ## Usage
 ![Dashboard](docs/img/dashboard.png)
 
-1. `git clone git@github.com:sthuber90/docker-speedtest.git`
+1. `git clone git@github.com:drakor007/docker-speedtest.git`
 2. `docker-compose up -d`
 3. Open Chronograf http://localhost:8888
 4. Import dashboard
